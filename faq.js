@@ -31,50 +31,57 @@ function showFaq() {
  
 
    faqData.forEach((data) => {
-     // creating a div for holding question and answer and adding a class faq
 
-     const div = document.createElement("div");
-     div.classList.add("faq" );
-    // creating faq head div
+
+  let faq = document.createElement("div");
+  faq.classList.add("faq" );
+
+
+  let faqHeader = document.createElement("div");
+  faqHeader.classList.add("faq_header");
+
+
+   const h3 = document.createElement("h3"); 
+    const question = document.createTextNode(data.question);
+
+     const showBtn = document.createElement("button"); 
+     showBtn.classList.add("show_btn");
+     const plus = document.createTextNode("+");
+    
+    h3.appendChild(question);
+    showBtn.appendChild(plus);
+    faqHeader.appendChild(h3);
+    faqHeader.appendChild(showBtn);
+    faq.appendChild(faqHeader);
+    container.appendChild(faq);
+
+
+    // hiden content
+
+     let hidden = document.createElement("div");
+     hidden.classList.add("hidden");
+
+   const p = document.createElement("p"); 
+    const answer = document.createTextNode(data.answer);
+
+    p.appendChild(answer);
+    hidden.appendChild(p);
+    faq.appendChild(hidden);
+
+  let clicked = true;
+   showBtn.addEventListener("click", () => {
+   if (clicked ) {
+     hidden.style.display = "inline";
+     clicked = false;
+   } else {
+     hidden.style.display = "none";
+     clicked = true;
+   }
+
+   })
     
 
-     // creating an h3
-     const h3 = document.createElement("h3");
-     h3.classList.add("faq_header");
-     //creating element button
-     const btn = document.createElement("buttton");
-     btn.classList.add("show_btn");
-     const plus = document.createTextNode("+");
-       btn.appendChild(plus);
-     
 
-     
-     // creating a  p tag
-     const p = document.createElement("p");
-
-     // creating a text node for h3
-     const name = document.createTextNode(data.question);
-     // creating a text node for p tag
-     const para = document.createTextNode(data.answer);
-
-
-
-     
-     // ading text in h3
-     h3.appendChild(name);
-     // ading para to  p tag
-     p.appendChild(para);
-     // ading h3 to div
-     div.appendChild(h3);
-     // appending btn to div
-     div.appendChild(btn);
-     
-     //adding p tag in div
-     div.appendChild(p);
-     // adding div to container
-     container.appendChild(div);
-     // ading a class faq to div
-     div.setAttribute("class", "faq");
    });
 
  
@@ -83,13 +90,5 @@ function showFaq() {
 
 
 showFaq ();
-
-function createFaq() {
-  
-}
-
-function btnStatusUpdate() {
-  
-}
 
 
